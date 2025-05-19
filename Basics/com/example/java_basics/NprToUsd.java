@@ -1,3 +1,5 @@
+package com.example.java_basics;
+
 import java.util.Scanner;
 
 public class NprToUsd {
