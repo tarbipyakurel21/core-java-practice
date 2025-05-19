@@ -27,8 +27,8 @@ This is mostly for my own practice, but feel free to open an issue if you have s
 
 ## Author
 
-[Your Name]
+Tarbi Pyakurel
 
 ## License
 
-[Choose a license](https://choosealicense.com/) (e.g., MIT, Apache 2.0) or "No License".
+"No License"
