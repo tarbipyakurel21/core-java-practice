@@ -1,37 +1,36 @@
 package com.example.advanced;
-
-mport java.io.FileReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
-class CustomCheckedException extends Exception {
-    public CustomCheckedException(String message) {
+class MyCustomException extends Exception {
+    public MyCustomException(String message) {
         super(message);
     }
 }
 
 public class Exceptions {
 
-    public void readFile(String fileName) throws IOException {
-        FileReader reader = null;
+    public void tryReadFile(String fileName) throws FileNotFoundException {
         try {
-            reader = new FileReader(fileName);
-            System.out.println("File opened.");
-        } finally {
-            if (reader != null) {
-                reader.close();
-                System.out.println("File closed.");
-            }
+            FileReader reader = new FileReader(fileName);
+            System.out.println("File opened: " + fileName);
+            reader.close();
+        } catch (FileNotFoundException e) {
+            throw e; // Re-throw to be caught by caller
+        } catch (IOException e) {
+            System.err.println("Error closing file: " + e.getMessage());
         }
     }
 
-    public void doSomethingRisky(int value) throws CustomCheckedException {
+    public void checkValue(int value) throws MyCustomException {
         if (value < 0) {
-            throw new CustomCheckedException("Value cannot be negative.");
+            throw new MyCustomException("Value cannot be negative.");
         }
-        System.out.println("Value is positive: " + value);
+        System.out.println("Value is: " + value);
     }
 
-    public double divide(int a, int b) {
+    public double divideNumbers(int a, int b) {
         if (b == 0) {
             throw new IllegalArgumentException("Cannot divide by zero.");
         }
@@ -42,21 +41,21 @@ public class Exceptions {
         Exceptions demo = new Exceptions();
 
         try {
-            demo.readFile("nonexistent.txt");
-        } catch (IOException e) {
-            System.err.println("File error: " + e.getMessage());
+            demo.tryReadFile("non_existent.txt");
+        } catch (FileNotFoundException e) {
+            System.err.println("Caught: " + e.getMessage());
         }
 
         try {
-            demo.doSomethingRisky(-5);
-        } catch (CustomCheckedException e) {
-            System.err.println("Risky operation failed: " + e.getMessage());
+            demo.checkValue(-10);
+        } catch (MyCustomException e) {
+            System.err.println("Caught: " + e.getMessage());
         }
 
         try {
-            System.out.println("Result: " + demo.divide(10, 0));
+            System.out.println("Division result: " + demo.divideNumbers(10, 0));
         } catch (IllegalArgumentException e) {
-            System.err.println("Division error: " + e.getMessage());
+            System.err.println("Caught: " + e.getMessage());
         }
     }
 }
