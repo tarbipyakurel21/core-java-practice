@@ -7,12 +7,12 @@ This repo contains Java code I'm using to practice core concepts and build a str
 You'll find Java examples and exercises covering:
 
 * Basic Java syntax
+* Few cli based apps covering those concepts
 * Object-Oriented Programming (OOP)
 * Collections
 * Exception handling
 * Multithreading
 * Input/Output (I/O)
-* Other core stuff like generics and lambda expressions
 
 ## How to Use
 
