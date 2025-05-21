@@ -1,4 +1,5 @@
-# Core Java Practice
+# Core Java Concepts
+
 
 This repo contains Java code I'm using to practice core concepts and build a stronger foundation for more advanced Java development.
 
